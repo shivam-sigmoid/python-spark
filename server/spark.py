@@ -26,4 +26,23 @@ df.createOrReplaceTempView('data')
 most_traded_stock_each_day = spark.sql(
     "select company,max(Volume) from data group by company")
 most_traded_stock_each_day.show()
+# Query No - 6
 
+mean_each_stock = spark.sql("select company,avg(open) as Mean from data group by company")
+# median_each_stock = spark.sql("SELECT company,((SELECT TOP 1 open FROM (SELECT TOP 50 PERCENT open FROM data WHERE open IS NOT NULL ORDER BY open ASC) FirstHalf ORDER BY open DESC) + (SELECT TOP 1 open FROM (SELECT TOP 50 PERCENT open FROM data WHERE open IS NOT NULL ORDER BY open DESC) SecondHalf ORDER BY open ASC)) / 2 AS Median group by company")
+
+
+# Query No - 7
+
+avg_volume_stock = spark.sql("select company, avg(Volume) as Average from data group by company")
+avg_volume_stock.show()
+
+# Query No - 8
+avg_max_volume_stock = spark.sql(
+    "select company,avg(Volume) as AVG from data group by company order by AVG DESC limit 1")
+avg_max_volume_stock.show()
+
+# Query No - 9
+high_less_price_stock = spark.sql(
+    "select company,max(open) as Max_Stock_Price,min(open) as Min_Stock_Price from data group by company")
+high_less_price_stock.show()
