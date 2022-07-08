@@ -90,8 +90,8 @@ def average_of_stock_volume_over_period():
 # Find which stock has higher average volume
 @app.route('/stock_higher_avg_volume')
 def stock_higher_avg_volume():
-    query8 = "SELECT company, AVG(Volume) FROM stocks_data GROUP BY company ORDER BY AVG(Volume) DESC LIMIT(1)"
-    pdf = spark.sql(query8)
+    query = "SELECT company, AVG(Volume) FROM stocks_data GROUP BY company ORDER BY AVG(Volume) DESC LIMIT(1)"
+    pdf = spark.sql(query)
     data = (pdf.select('*').rdd.flatMap(lambda x: x).collect())
     return jsonify({'data': data})
 
