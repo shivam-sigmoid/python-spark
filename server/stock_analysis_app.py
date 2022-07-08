@@ -93,7 +93,7 @@ def stock_higher_avg_volume():
     query = "SELECT company, AVG(Volume) FROM stocks_data GROUP BY company ORDER BY AVG(Volume) DESC LIMIT(1)"
     pdf = spark.sql(query)
     data = (pdf.select('*').rdd.flatMap(lambda x: x).collect())
-    return jsonify({'data': data})
+    return jsonify({'Data': data})
 
 
 # 9th
