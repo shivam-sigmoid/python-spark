@@ -6,7 +6,13 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import min, max
 
 app = Flask(__name__)
-spark = SparkSession.builder.getOrCreate()
+
+spark = SparkSession \
+    .builder \
+    .appName("Reading CSV") \
+    .master("local[3]") \
+    .getOrCreate()
+
 df = spark.read.options(header=True).csv('../data')
 df.createOrReplaceTempView('stocks_data')
 
