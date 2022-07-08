@@ -10,6 +10,10 @@ headers = {
 }
 
 
+# Function to get the stock data with the company name
+# Transform the data according to the need
+# Store it in the CSV
+
 def get_stock_data(company_name):
     querystring = {"ticker_symbol": company_name, "years": "5", "format": "json"}
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -24,6 +28,8 @@ def get_stock_data(company_name):
     stock_file_path_name = "../data/" + company_name + ".csv"
     stock_details_df.to_csv(stock_file_path_name)
 
+
+# Function to get the list of company name
 
 def get_company_name():
     list_of_companies = []
