@@ -21,6 +21,11 @@ spark = SparkSession \
 df = spark.read.options(header=True).csv('../data')
 # df = spark.read.options(header=True).csv(file_path)
 df.show()
+
+#Query No - 1 not done.
+#Server not covered for every part
+#could have added comments 
+
 # Query No - 2
 df.createOrReplaceTempView('data')
 most_traded_stock_each_day = spark.sql(
